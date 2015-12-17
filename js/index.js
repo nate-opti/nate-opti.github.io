@@ -22,19 +22,24 @@ var draw = function() {
 
   // Render existing circles
   for (i = 0; i < historicCircles.length; i++) {
-    stroke(randomColor());
-    fill(randomColor());
-    ellipse(historicCircles[i].x, historicCircles[i].y, 15, 15);
+    stroke(historicCircles[i].s);
+    fill(historicCircles[i].f);
+    rect(historicCircles[i].x, historicCircles[i].y, 15, 15);
   }
 
   // New random circle
-  stroke(randomColor());
-  fill(randomColor());
-  ellipse(circleX, circleY, 15, 15);
-
   var myCircle = new Object();
-  myCircle.x = circleX;
-  myCircle.y = circleY;
+
+  s = randomColor();
+  stroke(s);
+  myCircle.s = s;
+
+  f = randomColor()
+  fill(f);
+  myCircle.f = f;
+
+  rect(circleX, circleY, 15, 15);
+
   historicCircles.push(myCircle);
 
   // Move the circle to next position, or reset pos if it hits edges
@@ -45,17 +50,14 @@ var draw = function() {
   circleY = circleY + Math.floor(Math.random() * 4) - 1.1;
 
   // // Flash message every 10 seconds
-  // if (millis() - lastTime >= 10000) {
+  if (millis() - lastTime >= 10000) {
 
-  //   lastTime = millis();
+    lastTime = millis();
 
-  //   ellipse(circleX, circleY, 15, 15);
+    resetCirclePos();
 
-  //   // resetCirclePos();
-  //   // background(255);
-
-  //   //console.log('cleared, set lastTime to ' + lastTime);
-  // }
+    //console.log('cleared, set lastTime to ' + lastTime);
+  }
 }
 
 // Helpers
