@@ -5,16 +5,23 @@ var circleX = 200;
 var circleY = 200;
 var historicCircles = [];
 
+// Constants
+var SQUARE_SIZE = 60
+var LOCAL_DEV = false  // Set this by hand (:/) on local to avoid same origin policy issues loading images via file:// protocol
+
 
 var preload = function() {
-  bg = loadImage("img/optigrey.svg");
+  if (!LOCAL_DEV) {
+    // This takes time to need to preload before using in setup() method
+    bg = loadImage("img/optigrey.svg");
+  } else {
+    bg = randomColor();
+  }
 }
 
 
 var setup = function() {
-  // Full size of window
   createCanvas(windowWidth, windowHeight);
-
   // Set pre-loaded img as background
   background(bg)
 }
@@ -23,14 +30,11 @@ var setup = function() {
 // Render loop
 var draw = function() {
 
-  // Background
-  //background(255, 204, 0);
-
   // Render existing circles
   for (i = 0; i < historicCircles.length; i++) {
     stroke(historicCircles[i].s);
     fill(historicCircles[i].f);
-    rect(historicCircles[i].x, historicCircles[i].y, 15, 15);
+    rect(historicCircles[i].x, historicCircles[i].y, SQUARE_SIZE, SQUARE_SIZE);
   }
 
   // New random circle
@@ -44,25 +48,21 @@ var draw = function() {
   fill(f);
   myCircle.f = f;
 
-  rect(circleX, circleY, 15, 15);
+  rect(circleX, circleY, SQUARE_SIZE, SQUARE_SIZE);
 
   historicCircles.push(myCircle);
 
-  // Move the circle to next position, or reset pos if it hits edges
+  // Move active square to next position, or reset pos if it hits edges
   if (circleX === 0 || circleX === windowWidth || circleY === 0 || circleY === windowHeight){
     resetCirclePos()
   }
   circleX = circleX + Math.floor(Math.random() * 4) - 1.1;
   circleY = circleY + Math.floor(Math.random() * 4) - 1.1;
 
-  // // Flash message every 10 seconds
-  if (millis() - lastTime >= 10000) {
-
+  // Every X seconds
+  if (millis() - lastTime >= 30000) {
     lastTime = millis();
-
     resetCirclePos();
-
-    //console.log('cleared, set lastTime to ' + lastTime);
   }
 }
 
