@@ -38,6 +38,7 @@ var draw = function() {
   circleY = circleY + Math.floor(Math.random() * 4) - 1.4;
 
   // Move bouncing logo
+  clearLogo()
   moveLogo();
   paintLogo();
 
@@ -94,8 +95,8 @@ var smilingCat = function() {
  */
 logoX = 100;
 logoY = 100;
-xSpeed = 3;
-ySpeed = 1.5;
+xSpeed = 1;
+ySpeed = 0.5;
 
 var moveLogo = function() {
   logoX += xSpeed; // Increment x
@@ -116,7 +117,9 @@ var moveLogo = function() {
 
 var paintLogo = function() {
   image(optiLogo, logoX, logoY, optiLogo.height / 4, optiLogo.width / 4);
-  // then clear it
+}
+
+var clearLogo = function() {
   stroke(color(255, 204, 9));
   fill(color(255, 204, 9));
   rect(logoX, logoY, optiLogo.height / 4, optiLogo.width / 4);
