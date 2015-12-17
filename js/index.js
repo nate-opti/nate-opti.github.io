@@ -13,6 +13,7 @@ var setup = function() {
   // Background image
   bg = loadImage("img/optigrey.svg");
   background(bg);
+  console.log('hi');
 }
 
 // Render loop
@@ -30,17 +31,17 @@ var draw = function() {
   circleX = circleX + Math.floor(Math.random() * 4) - 1.1
   circleY = circleY + Math.floor(Math.random() * 4) - 1.1
 
-  // Flash message every 10 seconds
-  if (millis() - lastTime >= 10000) {
+  // // Flash message every 10 seconds
+  // if (millis() - lastTime >= 10000) {
 
-    lastTime = millis();
+  //   lastTime = millis();
 
-    ellipse(circleX, circleY, 15, 15);
+  //   ellipse(circleX, circleY, 15, 15);
 
-    // resetCirclePos();
-    // background(255);
+  //   // resetCirclePos();
+  //   // background(255);
 
-    console.log('cleared, set lastTime to ' + lastTime);
+  //   //console.log('cleared, set lastTime to ' + lastTime);
   }
 }
 
