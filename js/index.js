@@ -76,7 +76,7 @@ var smilingCat = function() {
   // Clear old number
   stroke(color(255, 204, 9));
   fill(color(255, 204, 9));
-  rect(windowWidth / 2, windowHeight / 2, widowWidth, 100000);
+  rect(windowWidth / 2, windowHeight / 2, windowWidth, 100000);
 
   // Display new number
   stroke(randomColor());
@@ -116,4 +116,8 @@ var moveLogo = function() {
 
 var paintLogo = function() {
   image(optiLogo, logoX, logoY, optiLogo.height / 4, optiLogo.width / 4);
+  // then clear it
+  stroke(color(255, 204, 9));
+  fill(color(255, 204, 9));
+  rect(logoX, logoY, optiLogo.height / 4, optiLogo.width / 4);
 }
