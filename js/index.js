@@ -61,10 +61,14 @@ var draw = function() {
   if (millis() >= 30000) {
     startBouncingLogo = true;
   }
-
   if (startBouncingLogo) {
     moveLogo();
     paintBouncingLogo();
+  }
+
+  // After 45 seconds, reload entire page
+  if (millis() >= 45000) {
+    window.location.reload(true);
   }
 }
 
