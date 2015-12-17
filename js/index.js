@@ -14,7 +14,7 @@ var preload = function() {
   if (!LOCAL_DEV) {
     // This takes time to need to preload before using in setup() method
     optiGrey = loadImage('img/optigrey.svg');
-    optiLogo = loadImage('img/opti_log.svg')
+    optiLogo = loadImage('img/opti_logo.svg')
   }
 }
 
