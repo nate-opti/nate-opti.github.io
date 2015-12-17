@@ -71,6 +71,7 @@ var draw = function() {
   if (millis() - lastTimeC >= 35000) {
     lastTimeC = millis();
     clear();
+    background(color(255, 204, 9));
   }
 }
 
@@ -100,7 +101,7 @@ var smilingCat = function() {
   // Clear old number
   stroke(color(255, 204, 9));
   fill(color(255, 204, 9));
-  rect(windowWidth / 2, windowHeight / 2, windowWidth + 10000, 100000);
+  rect(windowWidth / 4, windowHeight - 200, 10000, 10000);
 
   // Display new number
   stroke(127, 255, 0);
