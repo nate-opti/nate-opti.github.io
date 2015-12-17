@@ -1,6 +1,7 @@
 // Globals
 var lastTime = 0;
 var lastTime1 = 0;
+var lastTimeC = 0
 var circleX = 200;
 var circleY = 200;
 
@@ -66,9 +67,10 @@ var draw = function() {
     paintBouncingLogo();
   }
 
-  // After 35 seconds, reload entire page
-  if (millis() >= 35000) {
-    setTimeout(window.location.reload(), 1000);
+  // Every 35 seconds, clear
+  if (millis() - lastTimeC >= 35000) {
+    lastTimeC = millis();
+    clear();
   }
 }
 
