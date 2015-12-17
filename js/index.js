@@ -18,7 +18,7 @@ var setup = function() {
 var draw = function() {
 
   // Background
-  background(bg);
+  //background(bg);
 
   // Render existing circles
   for (i = 0; i < historicCircles.length; i++) {
