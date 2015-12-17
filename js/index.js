@@ -1,12 +1,31 @@
-function setup() {
-  createCanvas(640, 480);
+
+
+// Globals
+var lastTime = 0
+
+// Init
+var setup = function() {
+  // Fullscreen
+  createCanvas(windowWidth, windowHeight);
 }
 
-function draw() {
-  if (mouseIsPressed) {
-    fill(0);
-  } else {
-    fill(255);
+// Render loop
+var draw = function() {
+
+  // Follow cursor with randomly colored ellipses
+  stroke(randomColor());
+  fill(randomColor());
+  ellipse(mouseX, mouseY, 15, 15);
+
+  // Clear sketch every 8 seconds
+  if (millis() - lastTime >= 8000) {
+    background(255);
+    lastTime = millis();
+    console.log('cleared, set lastTime to ' + lastTime);
   }
-  ellipse(mouseX, mouseY, 80, 80);
+}
+
+// Helpers
+var randomColor = function() {
+  return color(random(255), random(255), random(255), random(255));
 }
