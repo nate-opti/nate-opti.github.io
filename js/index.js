@@ -5,20 +5,26 @@ var circleX = 200;
 var circleY = 200;
 var historicCircles = [];
 
-// Init
+
+var preload = function() {
+  bg = loadImage("img/optigrey.svg");
+}
+
+
 var setup = function() {
   // Full size of window
   createCanvas(windowWidth, windowHeight);
 
-  // Load file for background image
-  bg = loadImage("img/optigrey.svg");
+  // Set pre-loaded img as background
+  background(bg)
 }
+
 
 // Render loop
 var draw = function() {
 
   // Background
-  //background(bg);
+  //background(255, 204, 0);
 
   // Render existing circles
   for (i = 0; i < historicCircles.length; i++) {
