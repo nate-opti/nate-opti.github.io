@@ -1,5 +1,6 @@
 // Globals
 var lastTime = 0;
+var lastTimeThirty = 0;
 var circleX = 200;
 var circleY = 200;
 
@@ -20,7 +21,7 @@ var preload = function() {
 
 var setup = function() {
   createCanvas(windowWidth, windowHeight);
-  background(color(255, 204, 9))
+  background(color(255, 204, 9));
 }
 
 
@@ -42,13 +43,20 @@ var draw = function() {
   moveLogo();
   paintLogo();
 
-  // Every X seconds
+  // Every 5 seconds
   if (millis() - lastTime >= 5000) {
     lastTime = millis();
     resetSquarePos();
     tomFord();
     smilingCat();
   }
+
+  // Every 30 seconds
+  if (millis() - lastTimeThirty >= 30000) {
+    lastTimeThirty = millis();
+    background(color(255, 204, 9));
+  }
+
 }
 
 
@@ -77,7 +85,7 @@ var smilingCat = function() {
   // Clear old number
   stroke(color(255, 204, 9));
   fill(color(255, 204, 9));
-  rect(windowWidth / 2, windowHeight / 2, windowWidth, 100000);
+  rect(windowWidth / 2, windowHeight / 2, windowWidth + 1000, 100000);
 
   // Display new number
   stroke(randomColor());
@@ -111,8 +119,8 @@ var moveLogo = function() {
     ySpeed *= - 1;
   }
 
-  xSpeed += Math.random() + 1 - 0.5;
-  ySpeed += Math.random() + 1 - 0.5;
+  xSpeed += Math.random() + .25 - 0.125;
+  ySpeed += Math.random() + .25 - 0.125;
 }
 
 var paintLogo = function() {
