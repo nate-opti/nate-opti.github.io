@@ -17,7 +17,7 @@ var preload = function() {
   if (!LOCAL_DEV) {
     // This takes time to need to preload before using in setup() method
     optiGrey = loadImage('img/optigrey.svg');
-    optiLogo = loadImage('img/opti_logo.svg')
+    optiLogo = loadImage('img/opti_logo.svg');
   }
 }
 
@@ -57,8 +57,8 @@ var draw = function() {
     paintLogo();
   }
 
-  // After 30 seconds
-  if (millis() >= 30000) {
+  // After 20 seconds
+  if (millis() >= 20000) {
     startBouncingLogo = true;
   }
   if (startBouncingLogo) {
@@ -66,9 +66,9 @@ var draw = function() {
     paintBouncingLogo();
   }
 
-  // After 45 seconds, reload entire page
-  if (millis() >= 45000) {
-    window.location.reload();
+  // After 35 seconds, reload entire page
+  if (millis() >= 35000) {
+    setTimeout(window.location.reload(), 1000);
   }
 }
 
@@ -98,7 +98,7 @@ var smilingCat = function() {
   // Clear old number
   stroke(color(255, 204, 9));
   fill(color(255, 204, 9));
-  rect(windowWidth / 2, windowHeight / 2, windowWidth + 1000, 100000);
+  rect(windowWidth / 2, windowHeight / 2, windowWidth + 10000, 100000);
 
   // Display new number
   stroke(127, 255, 0);
