@@ -42,7 +42,7 @@ var draw = function() {
   //   // background(255);
 
   //   //console.log('cleared, set lastTime to ' + lastTime);
-  }
+  // }
 }
 
 // Helpers
