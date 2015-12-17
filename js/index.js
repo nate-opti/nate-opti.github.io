@@ -68,7 +68,7 @@ var draw = function() {
 
   // After 45 seconds, reload entire page
   if (millis() >= 45000) {
-    window.location.reload(true);
+    window.location.reload();
   }
 }
 
@@ -101,8 +101,8 @@ var smilingCat = function() {
   rect(windowWidth / 2, windowHeight / 2, windowWidth + 1000, 100000);
 
   // Display new number
-  stroke(randomColor());
-  fill(randomColor());
+  stroke(127, 255, 0);
+  fill(255);
   textSize(64);
   text('via csprng:' + arr[0], windowWidth / 4, windowHeight - 200);
 }
