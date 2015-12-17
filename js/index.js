@@ -38,7 +38,7 @@ var draw = function() {
   circleY = circleY + Math.floor(Math.random() * 4) - 1.4;
 
   // Move bouncing logo
-  clearLogo()
+  //clearLogo()
   moveLogo();
   paintLogo();
 
@@ -122,5 +122,5 @@ var paintLogo = function() {
 var clearLogo = function() {
   stroke(color(255, 204, 9));
   fill(color(255, 204, 9));
-  rect(logoX, logoY, optiLogo.height / 4, optiLogo.width / 4);
+  rect(logoX, logoY, optiLogo.height / 10, optiLogo.width / 10);
 }
