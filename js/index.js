@@ -72,6 +72,11 @@ var draw = function() {
     lastTimeC = millis();
     clear();
     background(color(255, 204, 9));
+    // reset ball position and speed
+    logoX = 100;
+    logoY = 100;
+    xSpeed = 0.5;
+    ySpeed = 0.5;
   }
 }
 
