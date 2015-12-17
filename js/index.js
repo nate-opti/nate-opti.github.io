@@ -1,14 +1,11 @@
 // Globals
 var lastTime = 0;
-
 var circleX = 200;
 var circleY = 200;
-var historicCircles = [];
 
 // Constants
 var SQUARE_SIZE = 60
 var LOCAL_DEV = false  // Set this by hand (:/) on local to avoid same origin policy issues loading images via file:// protocol
-
 
 var preload = function() {
   if (!LOCAL_DEV) {
@@ -18,37 +15,27 @@ var preload = function() {
   }
 }
 
-
 var setup = function() {
   createCanvas(windowWidth, windowHeight);
   background(color(255, 204, 9))
 }
 
-
-// Render loop
 var draw = function() {
 
-  // New random circle
-  var myCircle = new Object();
-
-  s = randomColor();
-  stroke(s);
-  myCircle.s = s;
-
-  f = randomColor()
-  fill(f);
-  myCircle.f = f;
-
+  // Draw new square
+  stroke(randomColor());
+  fill(randomColor());
   rect(circleX, circleY, SQUARE_SIZE, SQUARE_SIZE);
 
-  historicCircles.push(myCircle);
-
-  // Move active square to next position, or reset pos if it hits edges
+  // Move square to next position, or reset pos if it hits edges
   if (circleX === 0 || circleX === windowWidth || circleY === 0 || circleY === windowHeight){
     resetCirclePos()
   }
   circleX = circleX + Math.floor(Math.random() * 4) - 1.4;
   circleY = circleY + Math.floor(Math.random() * 4) - 1.4;
+
+  // Move bouncing logo
+
 
   // Every X seconds
   if (millis() - lastTime >= 5000) {
@@ -76,7 +63,21 @@ var tomFord = function() {
   text("TOM FORD", 60, 120);
 }
 
+// CSPRNG display
 var smilingCat = function() {
-  textSize(128);
-  text("😸", 200, 200);
+
+  // Generate a cspr 32-bit int
+  var arr = new Uint32Array(1);
+  window.crypto.getRandomValues(arr);
+
+  // Clear old number
+  stroke(color(255, 204, 9));
+  fill(color(255, 204, 9));
+  rect(windowWidth / 2, windowHeight / 2, 100000, 100000);
+
+  // Display new number
+  stroke(randomColor());
+  fill(randomColor());
+  textSize(64);
+  text('via csprng:' + arr[0], windowWidth / 4, windowHeight - 200);
 }
