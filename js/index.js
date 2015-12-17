@@ -134,14 +134,14 @@ var paintLogo = function() {
 logoX = 100;
 logoY = 100;
 xSpeed = 0.5;
-ySpeed = 0.25;
+ySpeed = 0.5;
 
 var moveLogo = function() {
   logoX += xSpeed; // Increment x
   logoY += ySpeed; // Increment y
 
   // Check horizontal edges
-  if (logoX > windowWidth - (optiLogo.width / (10))  || logoX < 0) {
+  if (logoX > windowWidth - (optiLogo.width / 10)  || logoX < 0) {
     xSpeed *= - 1;
   }
   // Check vertical edges
