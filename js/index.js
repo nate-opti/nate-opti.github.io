@@ -1,7 +1,10 @@
 // Globals
 var lastTime = 0;
+var lastTime1 = 0;
 var circleX = 200;
 var circleY = 200;
+
+var startBouncingLogo = false
 
 
 // Constants
@@ -9,6 +12,7 @@ var SQUARE_SIZE = 60
 var LOCAL_DEV = false  // Set this by hand (:/) on local to avoid same origin policy issues loading images via file:// protocol
 
 
+// Preload
 var preload = function() {
   if (!LOCAL_DEV) {
     // This takes time to need to preload before using in setup() method
@@ -18,12 +22,14 @@ var preload = function() {
 }
 
 
+// Setup
 var setup = function() {
   createCanvas(windowWidth, windowHeight);
   background(color(255, 204, 9));
 }
 
 
+// Draw -- main render loop
 var draw = function() {
   // Draw new square
   stroke(randomColor());
@@ -43,13 +49,27 @@ var draw = function() {
     resetSquarePos();
     tomFord();
     smilingCat();
-    paintLogo()
   }
 
+  // Every second
+  if (millis() - lastTime1 >= 1000) {
+    lastTime1 = millis();
+    paintLogo();
+  }
+
+  // After 30 seconds
+  if (millis() >= 30000) {
+    startBouncingLogo = true;
+  }
+
+  if (startBouncingLogo) {
+    moveLogo();
+    paintBouncingLogo();
+  }
 }
 
 
-// Helpers
+// Helper functions
 var randomColor = function() {
   return color(random(255), random(255), random(255), random(255));
 }
@@ -100,4 +120,39 @@ var paintLogo = function() {
       100
     );
   }
+}
+
+// Bouncing ball
+
+/**
+ * Modified version of bouncing ball class to use SVG logo
+ *
+ * Based on: http://www.learningprocessing.com
+ * Example 10-2: Bouncing ball class
+ */
+
+logoX = 100;
+logoY = 100;
+xSpeed = 0.5;
+ySpeed = 0.25;
+
+var moveLogo = function() {
+  logoX += xSpeed; // Increment x
+  logoY += ySpeed; // Increment y
+
+  // Check horizontal edges
+  if (logoX > windowWidth - (optiLogo.width / (10))  || logoX < 0) {
+    xSpeed *= - 1;
+  }
+  // Check vertical edges
+  if (logoY > windowHeight - (optiLogo.height / 10) || logoY < 0) {
+    ySpeed *= - 1;
+  }
+
+  xSpeed += Math.random() + .25 - 0.125;
+  ySpeed += Math.random() + .25 - 0.125;
+}
+
+var paintBouncingLogo = function() {
+  image(optiLogo, logoX, logoY, optiLogo.height / 10, optiLogo.width / 10);
 }
