@@ -101,7 +101,7 @@ var smilingCat = function() {
   // Clear old number
   stroke(color(255, 204, 9));
   fill(color(255, 204, 9));
-  rect(windowWidth / 4, windowHeight - 200, 10000, 10000);
+  rect(windowWidth / 4, windowHeight - 400, windowWidth / 2, windowHeight - 400);
 
   // Display new number
   stroke(127, 255, 0);
