@@ -1,6 +1,5 @@
 // Globals
 var lastTime = 0;
-var lastTimeThirty = 0;
 var circleX = 200;
 var circleY = 200;
 
@@ -38,23 +37,13 @@ var draw = function() {
   circleX = circleX + Math.floor(Math.random() * 4) - 1.4;
   circleY = circleY + Math.floor(Math.random() * 4) - 1.4;
 
-  // Move bouncing logo
-  //clearLogo()
-  moveLogo();
-  paintLogo();
-
-  // Every 5 seconds
-  if (millis() - lastTime >= 5000) {
+  // Every 3 seconds
+  if (millis() - lastTime >= 3000) {
     lastTime = millis();
     resetSquarePos();
     tomFord();
     smilingCat();
-  }
-
-  // Every 30 seconds
-  if (millis() - lastTimeThirty >= 30000) {
-    lastTimeThirty = millis();
-    background(color(255, 204, 9));
+    paintLogo()
   }
 
 }
@@ -94,41 +83,21 @@ var smilingCat = function() {
   text('via csprng:' + arr[0], windowWidth / 4, windowHeight - 200);
 }
 
-
-/**
- * Modified version of bouncing ball class to use SVG logo
- *
- * Based on: http://www.learningprocessing.com
- * Example 10-2: Bouncing ball class
- */
-logoX = 100;
-logoY = 100;
-xSpeed = 0.5;
-ySpeed = 0.25;
-
-var moveLogo = function() {
-  logoX += xSpeed; // Increment x
-  logoY += ySpeed; // Increment y
-
-  // Check horizontal edges
-  if (logoX > windowWidth - (optiLogo.width / (10))  || logoX < 0) {
-    xSpeed *= - 1;
-  }
-  // Check vertical edges
-  if (logoY > windowHeight - (optiLogo.height / 10) || logoY < 0) {
-    ySpeed *= - 1;
-  }
-
-  xSpeed += Math.random() + .25 - 0.125;
-  ySpeed += Math.random() + .25 - 0.125;
-}
-
 var paintLogo = function() {
-  image(optiLogo, logoX, logoY, optiLogo.height / 10, optiLogo.width / 10);
-}
-
-var clearLogo = function() {
-  stroke(color(255, 204, 9));
-  fill(color(255, 204, 9));
-  rect(logoX, logoY, optiLogo.height / 10, optiLogo.width / 10);
+  if (!LOCAL_DEV) {
+    image(
+      optiLogo,
+      Math.floor(Math.random() * windowWidth),
+      Math.floor(Math.random() * windowWidth),
+      optiLogo.width / 4,
+      optiLogo.height / 4
+    );
+  } else {
+    rect(
+      Math.floor(Math.random() * windowWidth),
+      Math.floor(Math.random() * windowWidth),
+      100,
+      100
+    );
+  }
 }
