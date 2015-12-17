@@ -7,18 +7,16 @@ var circleY = 200
 
 // Init
 var setup = function() {
-  // Fullscreen
+  // Full size of window
   createCanvas(windowWidth, windowHeight);
 
+  // Background image
   bg = loadImage("img/optigrey.svg");
-
+  background(bg);
 }
 
 // Render loop
 var draw = function() {
-
-  // Image backround
-  background(bg);
 
   // Randomly color and display the circle
   stroke(randomColor());
