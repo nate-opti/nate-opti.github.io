@@ -13,29 +13,20 @@ var LOCAL_DEV = false  // Set this by hand (:/) on local to avoid same origin po
 var preload = function() {
   if (!LOCAL_DEV) {
     // This takes time to need to preload before using in setup() method
-    bg = loadImage("img/optigrey.svg");
-  } else {
-    bg = randomColor();
+    optiGrey = loadImage('img/optigrey.svg');
+    optiLogo = loadImage('img/opti_log.svg')
   }
 }
 
 
 var setup = function() {
   createCanvas(windowWidth, windowHeight);
-  // Set pre-loaded img as background
-  background(bg)
+  background(color(255, 204, 9))
 }
 
 
 // Render loop
 var draw = function() {
-
-  // Render existing circles
-  for (i = 0; i < historicCircles.length; i++) {
-    stroke(historicCircles[i].s);
-    fill(historicCircles[i].f);
-    rect(historicCircles[i].x, historicCircles[i].y, SQUARE_SIZE, SQUARE_SIZE);
-  }
 
   // New random circle
   var myCircle = new Object();
@@ -56,13 +47,15 @@ var draw = function() {
   if (circleX === 0 || circleX === windowWidth || circleY === 0 || circleY === windowHeight){
     resetCirclePos()
   }
-  circleX = circleX + Math.floor(Math.random() * 4) - 1.1;
-  circleY = circleY + Math.floor(Math.random() * 4) - 1.1;
+  circleX = circleX + Math.floor(Math.random() * 4) - 1.4;
+  circleY = circleY + Math.floor(Math.random() * 4) - 1.4;
 
   // Every X seconds
-  if (millis() - lastTime >= 30000) {
+  if (millis() - lastTime >= 5000) {
     lastTime = millis();
     resetCirclePos();
+    tomFord();
+    smilingCat();
   }
 }
 
@@ -74,4 +67,16 @@ var randomColor = function() {
 var resetCirclePos = function() {
   circleX = Math.floor(Math.random() * windowWidth);
   circleY = Math.floor(Math.random() * windowHeight);
+}
+
+var tomFord = function() {
+  textSize(64);
+  text("TOM FORD", 60, 60);
+  fill(0, 102, 153, 51);
+  text("TOM FORD", 60, 120);
+}
+
+var smilingCat = function() {
+  textSize(128);
+  text("😸", 200, 200);
 }
