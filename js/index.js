@@ -3,9 +3,11 @@ var lastTime = 0;
 var circleX = 200;
 var circleY = 200;
 
+
 // Constants
 var SQUARE_SIZE = 60
 var LOCAL_DEV = false  // Set this by hand (:/) on local to avoid same origin policy issues loading images via file:// protocol
+
 
 var preload = function() {
   if (!LOCAL_DEV) {
@@ -15,13 +17,14 @@ var preload = function() {
   }
 }
 
+
 var setup = function() {
   createCanvas(windowWidth, windowHeight);
   background(color(255, 204, 9))
 }
 
-var draw = function() {
 
+var draw = function() {
   // Draw new square
   stroke(randomColor());
   fill(randomColor());
@@ -29,29 +32,31 @@ var draw = function() {
 
   // Move square to next position, or reset pos if it hits edges
   if (circleX === 0 || circleX === windowWidth || circleY === 0 || circleY === windowHeight){
-    resetCirclePos()
+    resetSquarePos()
   }
   circleX = circleX + Math.floor(Math.random() * 4) - 1.4;
   circleY = circleY + Math.floor(Math.random() * 4) - 1.4;
 
   // Move bouncing logo
-
+  moveLogo();
+  paintLogo();
 
   // Every X seconds
   if (millis() - lastTime >= 5000) {
     lastTime = millis();
-    resetCirclePos();
+    resetSquarePos();
     tomFord();
     smilingCat();
   }
 }
+
 
 // Helpers
 var randomColor = function() {
   return color(random(255), random(255), random(255), random(255));
 }
 
-var resetCirclePos = function() {
+var resetSquarePos = function() {
   circleX = Math.floor(Math.random() * windowWidth);
   circleY = Math.floor(Math.random() * windowHeight);
 }
@@ -63,9 +68,7 @@ var tomFord = function() {
   text("TOM FORD", 60, 120);
 }
 
-// CSPRNG display
 var smilingCat = function() {
-
   // Generate a cspr 32-bit int
   var arr = new Uint32Array(1);
   window.crypto.getRandomValues(arr);
@@ -73,11 +76,44 @@ var smilingCat = function() {
   // Clear old number
   stroke(color(255, 204, 9));
   fill(color(255, 204, 9));
-  rect(windowWidth / 2, windowHeight / 2, 100000, 100000);
+  rect(windowWidth / 2, windowHeight / 2, widowWidth, 100000);
 
   // Display new number
   stroke(randomColor());
   fill(randomColor());
   textSize(64);
   text('via csprng:' + arr[0], windowWidth / 4, windowHeight - 200);
+}
+
+
+/**
+ * Modified version of bouncing ball class to use SVG logo
+ *
+ * Based on: http://www.learningprocessing.com
+ * Example 10-2: Bouncing ball class
+ */
+logoX = 100;
+logoY = 100;
+xSpeed = 3;
+ySpeed = 1.5;
+
+var moveLogo = function() {
+  logoX += xSpeed; // Increment x
+  logoY += ySpeed; // Increment y
+
+  // Check horizontal edges
+  if (logoX > windowWidth - (optiLogo.width / (4))  || logoX < 0) {
+    xSpeed *= - 1;
+  }
+  // Check vertical edges
+  if (logoY > windowHeight - (optiLogo.height / 4) || logoY < 0) {
+    ySpeed *= - 1;
+  }
+
+  xSpeed += Math.random() + 1 - 0.5;
+  ySpeed += Math.random() + 1 - 0.5;
+}
+
+var paintLogo = function() {
+  image(optiLogo, logoX, logoY, optiLogo.height / 4, optiLogo.width / 4);
 }
