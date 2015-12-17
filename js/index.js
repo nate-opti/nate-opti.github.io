@@ -95,19 +95,19 @@ var smilingCat = function() {
  */
 logoX = 100;
 logoY = 100;
-xSpeed = 1;
-ySpeed = 0.5;
+xSpeed = 0.5;
+ySpeed = 0.25;
 
 var moveLogo = function() {
   logoX += xSpeed; // Increment x
   logoY += ySpeed; // Increment y
 
   // Check horizontal edges
-  if (logoX > windowWidth - (optiLogo.width / (4))  || logoX < 0) {
+  if (logoX > windowWidth - (optiLogo.width / (10))  || logoX < 0) {
     xSpeed *= - 1;
   }
   // Check vertical edges
-  if (logoY > windowHeight - (optiLogo.height / 4) || logoY < 0) {
+  if (logoY > windowHeight - (optiLogo.height / 10) || logoY < 0) {
     ySpeed *= - 1;
   }
 
@@ -116,7 +116,7 @@ var moveLogo = function() {
 }
 
 var paintLogo = function() {
-  image(optiLogo, logoX, logoY, optiLogo.height / 4, optiLogo.width / 4);
+  image(optiLogo, logoX, logoY, optiLogo.height / 10, optiLogo.width / 10);
 }
 
 var clearLogo = function() {
